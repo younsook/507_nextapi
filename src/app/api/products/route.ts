@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import type { Product } from "@/app/types/product";
-import { products } from "@/app/types/product";
+import type { Product } from "@/types/product";
+import { products } from "@/types/product";
 
 
 //CRUD를 구현할 JSON 파일 접근을 위해 필요한 모듈
