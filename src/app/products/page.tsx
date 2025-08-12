@@ -25,7 +25,7 @@ export default async function Products() {
         <h1 className="text-2xl font-bold"><Link href="/products">상품 목록</Link></h1>
         <div className="flex gap-2">
                 <Link
-                href="/" className="px-4 py-2 bg-amber-500 text-white rounded 
+                href="/products/new" className="px-4 py-2 bg-amber-500 text-white rounded 
                                     hover:bg-amber-600 transition">
                 상품추가
                 </Link>

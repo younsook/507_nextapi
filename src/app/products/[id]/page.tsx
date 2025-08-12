@@ -3,6 +3,7 @@ import type { Product } from "@/types/product";
 import ProductCard from "@/app/products/ProductCard";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ProductDel from "../ProductDel";
 
 
 type PageProps = {
@@ -25,6 +26,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   const { id } = await params; 
   //const { id } = use(params) ; // 클라우드 경우
   const product = await getProduct(id);
+
  
   if (!product) return notFound();
 
@@ -34,16 +36,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">상품 상세</h1>
         <div className="flex gap-2">
+            
             <Link
               href={`/products/${id}/edit`} className="px-4 py-2 bg-blue-500 text-white rounded
                                         hover:bg-blue-800 transition">
               수정
             </Link>
-            <Link
-              href="/products" className="px-4 py-2 bg-red-700 text-white rounded
-                                        hover:bg-red-800 transition">
-              삭제
-            </Link>
+            
+            <ProductDel id={product.id} label="삭제" className="cursor-pointer"/>
+
             <Link
               href="/products" className="px-4 py-2 bg-slate-700 text-white rounded
                                         hover:bg-slate-800 transition">
