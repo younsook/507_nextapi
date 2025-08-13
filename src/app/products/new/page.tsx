@@ -1,5 +1,7 @@
 import Link from "next/link";
 import ProductForm from "../ProductForm";
+//import type { FormStatus } from "../actions";
+//import { createProductAction, updateProductAction } from "../actions";
 
 export default async function NewProduct() {
   return (
@@ -15,7 +17,7 @@ export default async function NewProduct() {
                 </Link>
         </div>
       </div>
-
+      {/* 추가 모드  */}
       <ProductForm />
     </div>
   );

@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import ProductDel from "../ProductDel";
 
 
-type PageProps = {
+interface PageProps  {
    params: Promise<{ id: string }>; //상위버전에서 Promise 로 변경되어 나옴
   //products/123 -> params.id === "123"
 };
@@ -22,7 +22,7 @@ async function getProduct(id: string): Promise<Product | null> {
   return (data.product as Product) ?? null;
 }
 
-export default async function ProductDetailPage({ params }: PageProps) {
+export default async function ProductDetailPage({ params }: {params: Promise<{ id: string }>}) {
   const { id } = await params; 
   //const { id } = use(params) ; // 클라우드 경우
   const product = await getProduct(id);

@@ -18,9 +18,7 @@ export default  function ProductDel({
 
   const handleDelete = async() => {
     if(confirm("이상품을 삭제하시겠습니까?")){
-      //const result = await deleteProductAction(id);
         const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-        //const res = await fetch(`${baseUrl}/api/products/${id}`, {method: 'DELETE'});
         const res = await fetch(`/api/products/${id}`, {
         method: 'DELETE',
         cache: 'no-store',
@@ -41,9 +39,8 @@ export default  function ProductDel({
       <button
       type="button"
       onClick={handleDelete}
-      
-      className={`px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition disabled:opacity-50 cursor-pointer ${className ?? ''}`}
-    >
+      className={`px-4 py-2 bg-red-600 text-white rounded 
+                hover:bg-red-700 transition disabled:opacity-50 cursor-pointer ${className ?? ''}`} >
       삭제
     </button>
     </div>
