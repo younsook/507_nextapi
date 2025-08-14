@@ -30,20 +30,30 @@ export default function ProductForm({product} : ProductFormProps) {
   //   return () => console.log('[ProductForm] unmounted');
   // }, []);
 
-  // // product가 바뀔 때만 상세 로그
-  // useEffect(() => {
-  //   console.log('[ProductForm] product updated', {
-  //     isEditMode,
-  //     product,
-  //     id: product?.id,
-  //     name: product?.name,
-  //     category: product?.category,
-  //     price: product?.price,
-  //     types: { price: typeof product?.price }
-  //   });
-  // }, [product?.id]); // id 기준으로 변경 감지
+  // product가 바뀔 때만 상세 로그
+  useEffect(() => {
+    console.log('[ProductForm] product updated', {
+      isEditMode,
+      product,
+      id: product?.id,
+      name: product?.name,
+      category: product?.category,
+      price: product?.price,
+      types: { price: typeof product?.price }
+    });
+  }, [product?.id]); // id 기준으로 변경 감지
 
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
+  const [price, setPrice] = useState(''); // 문자열로
+  const [description, setDescription] = useState('');
 
+  useEffect(() => {
+    setName(product?.name ?? '');
+    setCategory(product?.category ?? '');
+    setPrice(product?.price != null ? String(product.price) : '');
+    setDescription(product?.description ?? '');
+  }, [product?.id]); // id 바뀔 때만 초기화
 
   return (
     <div>
@@ -63,7 +73,7 @@ export default function ProductForm({product} : ProductFormProps) {
                     </span>
           </label>
           <input
-         // key={`name-${product ? String(product.id) : 'new'}`}
+          key={`name-${product ? String(product.id) : 'new'}`}
             id="name"
             name="name"
             type="text"
@@ -81,7 +91,7 @@ export default function ProductForm({product} : ProductFormProps) {
             카테고리
           </label>
           <input
-         // key={`category-${product ? product.id : 'new'}`}
+          key={`category-${product ? product.id : 'new'}`}
             id="category"
             name="category"
             type="text"
@@ -98,7 +108,7 @@ export default function ProductForm({product} : ProductFormProps) {
             가격
           </label>
           <input
-         // key={`price-${product ? product.id : 'new'}`}
+          key={`price-${product ? product.id : 'new'}`}
             id="price"
             name="price"
             type="number"
@@ -114,7 +124,7 @@ export default function ProductForm({product} : ProductFormProps) {
             설명
           </label>
           <input
-          //key={`description-${product ? product.id : 'new'}`}
+          key={`description-${product ? product.id : 'new'}`}
             id="description"
             name="description"
             type="text"

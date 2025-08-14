@@ -1,5 +1,6 @@
 import Link from "next/link";
-import ProductForm from "../ProductForm";
+import ProductForm from "@/app/products/ProductForm";
+
 //import type { FormStatus } from "../actions";
 //import { createProductAction, updateProductAction } from "../actions";
 

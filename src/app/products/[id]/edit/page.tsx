@@ -1,17 +1,32 @@
 import Link from "next/link";
-import ProductForm from "../../ProductForm";
+import ProductForm from "@/app/products/ProductForm";
 import type { Product } from "@/types/product";
 
 async function getProduct(id: string): Promise<Product> {
   // 상세 API가 있는 경우: /api/products/[id]
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ;
-  if (!baseUrl) throw new Error('NEXT_PUBLIC_BASE_URL is not set');
+  // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ;
+  // if (!baseUrl) throw new Error('NEXT_PUBLIC_BASE_URL is not set');
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
   const resp = await fetch(`${baseUrl}/api/products/${id}`, { cache: "no-store" });
-
-  if (!resp.ok) throw new Error('Fetch Error') ;
+  //if (!resp.ok) throw new Error('Fetch Error') ;
   
-  return resp.json() ;
+  //return resp.json() ;
+
+  if (!resp.ok) throw new Error('Fetch Error');
+
+  const data = (await resp.json()) as any;
+  const p = data?.product ?? data; // ← { product: {...} }든 {...}든 언래핑
+
+  // ← 여기서 반드시 반환!
+  return {
+    id: String(p.id),
+    name: String(p.name ?? ""),
+    category: String(p.category ?? ""),
+    description: String(p.description ?? ""),
+    price: Number(p.price ?? 0),
+  };
 }
+
 
 export default async function EditProduct ({ 
     params 

@@ -1,6 +1,7 @@
-import { promises } from "dns";
+
 import type { Product } from "@/types/product";
 import Link from "next/link";
+import ProductCard from "./ProductCard";
 
 async function getProducts() : Promise<Product[]> {
    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL;
